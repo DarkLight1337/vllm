@@ -166,6 +166,11 @@ class BaseRenderer(ABC):
                 "You must set `--enable-prompt-embeds` to input `prompt_embeds`."
             )
 
+        print("Calling torch.load from:")
+        import traceback
+
+        traceback.print_stack()
+
         def _load_and_validate_embed(embed: bytes) -> EmbedsPrompt:
             # Enable sparse tensor integrity checks to prevent out-of-bounds
             # writes from maliciously crafted tensors

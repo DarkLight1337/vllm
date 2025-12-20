@@ -126,6 +126,11 @@ class AudioEmbeddingMediaIO(MediaIO[torch.Tensor]):
         super().__init__()
 
     def load_bytes(self, data: bytes) -> torch.Tensor:
+        print("Calling torch.load from:")
+        import traceback
+
+        traceback.print_stack()
+
         buffer = BytesIO(data)
         # Enable sparse tensor integrity checks to prevent out-of-bounds
         # writes from maliciously crafted tensors
@@ -137,6 +142,11 @@ class AudioEmbeddingMediaIO(MediaIO[torch.Tensor]):
         return self.load_bytes(pybase64.b64decode(data, validate=True))
 
     def load_file(self, filepath: Path) -> torch.Tensor:
+        print("Calling torch.load from:")
+        import traceback
+
+        traceback.print_stack()
+
         # Enable sparse tensor integrity checks to prevent out-of-bounds
         # writes from maliciously crafted tensors
         with torch.sparse.check_sparse_tensor_invariants():
